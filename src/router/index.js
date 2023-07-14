@@ -2,12 +2,10 @@
 import Vue from 'vue'
 import VueRouter from "vue-router"
 
-
 const Home = ()=> import("views/home/Home")
 const Category = ()=> import("views/category/Category")
 const ShopCart = ()=> import("views/shop-cart/shop-cart")
 const Profile = ()=> import("views/profile/Profile")
-
 
 
 // 2、初始化
@@ -33,7 +31,7 @@ const routes = [
     component:ShopCart,
   },
   {
-    path:'/profile', 
+    path:'/profile',
     component:Profile,
   },
 ]

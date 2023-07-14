@@ -1,12 +1,22 @@
 <template>
   <div>
-    分类
+    <MainNavBar :title="title" />
   </div>
 </template>
 
 <script>
+import MainNavBar from "components/content/mainNavBar/MainNavBar"
+
 export default {
-  name:'Category'
+  name:'Category',
+  data() {
+    return {
+      title:"分类",
+    }
+  },
+  components:{
+    MainNavBar
+  },
 }
 </script>
 
