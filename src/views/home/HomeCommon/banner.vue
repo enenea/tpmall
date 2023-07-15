@@ -1,5 +1,5 @@
 <template>
-    <div class="swiper-container">
+    <div class="swiper-container" ref="swiperContainer">
         <div class="swiper-wrapper">
 
             <!-- <div class="swiper-slide swiper-slide1">Slide 1</div> -->
@@ -30,12 +30,12 @@ export default {
     props:["banner"],
     data() {
       return {
-
+        mySwiper:null
       }
     },
     mounted() {
-      setTimeout(() => {
-        const mySwiper = new Swiper('.swiper-container', {
+      setTimeout(()=>{
+        this.mySwiper = new Swiper(".swiper-container", {
           autoplay: {
             delay: 2000, // 每次轮播间隔的ms数，默认3000ms
             stopOnLastSlide: false, // 播放完最后一张图片后是否停留在最后一张图片上，停止继续轮播。默认false
@@ -54,7 +54,7 @@ export default {
           //   prevEl: '.swiper-button-prev', // 左按钮
           // },
         })
-      },0.2 * 1000)
+      }, 500)
     }
 }
 

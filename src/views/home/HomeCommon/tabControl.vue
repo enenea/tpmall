@@ -1,14 +1,19 @@
 <template>
   <div class="tab-control">
-    <div @click="tabClick(index)" :class="{active:currentIndex == index}" v-for="(item, index) in title">{{item}}
+    <div @click="tabClick({index:index,id:item.id})" :class="{active:currentIndex == index}" v-for="(item, index)  in title">{{item.name}}
     <span></span>
     </div>
   </div>
+
 </template>
 
 <script>
+
   export default {
     name:"TabControl",
+    components:{
+    },
+
     props:{
       title:{
         type:Array,
@@ -16,13 +21,15 @@
       }
     },
     methods:{
-      tabClick(index){
-        this.currentIndex = index
+      tabClick(info){
+        this.currentIndex = info.index
+        this.$emit("clickTab",info.id)
       },
     },
     data() {
       return {
-        currentIndex:0
+        currentIndex:0,
+        currentId:1
       }
     }
 
