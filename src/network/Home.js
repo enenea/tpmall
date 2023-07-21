@@ -8,11 +8,12 @@ export function getMultiData(){
 }
 
 
-export function getGoodsData(id){
+export function getGoodsData(params){
   return request({
     url:"/home/getgoods",
     data:{
-      id
+      id: params.id,
+      page: params.page
     },
     method:"post",
   })

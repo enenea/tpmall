@@ -6,6 +6,7 @@ export function request(config){
 		// 1 初始化axios
 	const instance = axios.create({
 		baseURL:'http://www.tp6.com/shop.php/',
+		// baseURL:'http://fangdanguo.site/shop.php/',
 		timeout:5000,
 	})
 

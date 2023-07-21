@@ -3,8 +3,10 @@
 
 
 
-    <router-view>
-    </router-view>
+    <keep-alive exclude="detail">
+      <router-view>
+      </router-view>
+    </keep-alive>
 
     <MainTabBar></MainTabBar>
 

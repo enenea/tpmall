@@ -18,7 +18,8 @@
       title:{
         type:Array,
         default:[],
-      }
+      },
+     
     },
     methods:{
       tabClick(info){

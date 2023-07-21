@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper" ref="wrapper">
+  <div class="wrapper">
     <div class="goods content" >
-      <div v-for="(item, index) in goods" class="goods-item">
+      <div v-for="(item, index) in goods" class="goods-item" @click="clickGoods(item.id)">
 
         <img :src="item.goods_img" />
 
@@ -16,39 +16,63 @@
 </template>
 
 <script>
-// import BetterScroll from "better-scroll"
+// import BetterScroll from "better-scroll" =>
 
   export default {
     name:"goods",
-    props:["goods"],
+    props:["goods","currentCate"],
     data() {
       return {
         bs:null
       }
     },
-
     mounted() {
-      // 接受一下防止函数执行完成之后丢失实例
-      // this.bs = new BetterScroll(".wrapper", {})
+      window.addEventListener('scroll', this.handleScroll);
     },
+    methods:{
+      clickGoods(id){
+        this.$router.push('detail/'+ id)
+      },
+      handleScroll() {
+        //滚动条在y轴上的滚动距离
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        //文档的总高度
+        var documentScrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+        //浏览器窗口的高度
+        var getWindowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+        if (scrollTop > 10) {
+
+        } else {
+
+        }
+
+        //滚动条距离页面顶部的距离大于一屏时触发该方法
+        if (scrollTop + getWindowHeight == documentScrollHeight) {
+          this.$emit("loadData",this.currentCate.id)
+        }
+      },
+    },
+
   }
+
+
+
+
 </script>
 
 <style>
 .wrapper{
-  /* height: 100rem; */
 }
 .goods{
-  padding-bottom: 2.5rem;
+  /* padding-bottom: 2.5rem; */
 }
 
 .goods-item{
   width: 46%;
   display: inline-block;
-  /* padding: 0 1.5rem; */
   padding: 1% 1%;
   margin: 1% 1%;
-  /* overflow: hidden; */
 }
 
 /* 清除浮动 */

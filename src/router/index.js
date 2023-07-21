@@ -6,6 +6,7 @@ const Home = ()=> import("views/home/Home")
 const Category = ()=> import("views/category/Category")
 const ShopCart = ()=> import("views/shop-cart/shop-cart")
 const Profile = ()=> import("views/profile/Profile")
+const Detail = ()=> import("views/goods/Detail")
 
 
 // 2、初始化
@@ -34,13 +35,17 @@ const routes = [
     path:'/profile',
     component:Profile,
   },
+  {
+    path:'/detail/:id',
+    component:Detail,
+  },
 ]
 
 
 // new router
 const router = new VueRouter({
   routes,
-  mode:'history',
+  mode:"history"
 })
 
 
