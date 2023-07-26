@@ -1,20 +1,20 @@
 <template>
-  <div class="detail-info">
+  <div class="detail-info" >
 
     <div class="goods_title">
-      {{goods.name}}
+      {{goods.goods_name}}
     </div>
 
     <div class="price-box">
-      <span class="price">￥{{goods.goods_price.toFixed(2)}}</span>
-      <span>￥{{goods.goods_old_price.toFixed(2)}}</span>
-      <i v-if="goods.goods_discount > 0">{{goods.goods_discount}}折</i>
+      <span class="price">￥{{Number(goods.goods_price).toFixed(2)}}</span>
+      <span>￥{{Number(goods.goods_old_price).toFixed(2)}}</span>
+      <i v-if="goods.goods_discount">{{goods.goods_discount}}</i>
     </div>
 
     <div class="other-info">
       <span>销量 {{goods.goods_sale}}</span>
       <span>收藏{{goods.goods_favorite}}</span>
-      <span>{{goods.goods_delivery}}小时发货</span>
+      <span>{{getDelivery(goods.goods_delivery)}}</span>
     </div>
 
     <div class="separate"></div>
@@ -27,11 +27,12 @@
 
     <div class="separate spe2"></div>
 
-    <div class="store-box">
+    <div class="store-box" v-if="goods.store">
       <div class="store-top">
         <div class="store-logo">
-          <div class="store-logo-img">
-            <img src="~assets/img/detail/icon02.png" alt="">
+          <div class="store-logo-img" >
+            <img v-if="goods.store.logo" :src="goods.store.logo" alt="">
+            <img v-else="goods.store.logo" src="~assets/img/detail/icon02.png" alt="">
           </div>
         </div>
           <div class="store-name">{{goods.store.name}}</div>
@@ -66,7 +67,7 @@
 
             <p>
               质量满意
-              <span :style="scoreColor(goods.storequality_stardesc_star)">{{getFixed(goods.store.quality_star)}} </span>
+              <span :style="scoreColor(goods.store.quality_star)">{{getFixed(goods.store.quality_star)}} </span>
               <i :class="score(goods.store.quality_star)">{{scoreText(goods.store.quality_star)}}</i>
             </p>
           </div>
@@ -82,19 +83,42 @@
     </div>
 
     <div class="separate spe3"></div>
+
+    <div v-if="goods.goodsDesc">
+      <DescInfo style="margin-top: 0.3rem;" :desc="goods.goodsDesc.desc"></DescInfo>
+    </div>
+
+    <div class="separate spe3"></div>
+    <!-- <options></options> -->
+
   </div>
 </template>
 
 <script>
+  import DescInfo from "./desc"
+  // import Options from "./options"
   export default {
     name:"Info",
+    props:["goods"],
     components:{
-
+      DescInfo,
+      // Options
     },
     computed:{
+
+      getDelivery : () =>{
+        return function (hour){
+          if (hour <= 72) {
+            return hour + "小时内发货"
+          } else{
+            return (hour/24) + "天内发货"
+          }
+        }
+      },
+
       score : () =>{
         return function (score){
-          return score >= this.studio ? "high": "low"
+          return score >= 4.8 ? "high": "low"
         }
       },
       scoreText : () =>{
@@ -113,8 +137,10 @@
       getFixed(value, num=2){
         return value.toFixed(num)
       },
+
       clickStroe(){
-        console.log("进店");
+        // console.log("进店");
+        this.$swal('Hello Vue world!!!')
       },
 
     },
@@ -125,42 +151,7 @@
     data() {
       return {
         // 评分标准
-        studio:4.8,
-        goods:{
-          name:"名字名字名字名字名字名字名字名字名字名字名字名字名字名字",
-          goods_price:88.90,
-          goods_old_price:188.90,
-          goods_discount:7,
-          goods_sale:2146,
-          goods_favorite:12,
-          goods_delivery:72,
-          // 富文本
-          goods_desc:{
-            desc:"123aopwjfaiowrj1o2j4shiajsqajgq"
-          },
-          goods_options:{
-              // 规格参数对象 需遍历
-            options:{
-
-            }
-          },
-          goods_service:[
-            "延误必赔",
-            "退货补运费",
-            "全国包邮",
-            "7天无理由退货"
-          ],
-          // 店铺相关
-          store:{
-            name:"杂货铺",
-            logo:"123123",
-            desc_star:4.62,
-            price_star:4.8,
-            quality_star:4.12,
-            total_goods:86,
-            sale_count:58
-          },
-        }
+        studio:4.8
       }
     }
   }
@@ -169,7 +160,7 @@
 
 <style scoped>
 .detail-info{
-  padding: 0 0.4rem 20rem 0.4rem;
+  padding: 0 0.4rem 0 0.4rem;
 }
 .goods_title{
     font-size: 1.2rem;
@@ -195,13 +186,13 @@
   margin-left: 0.5rem;
   background: crimson;
   display: inline-block;
-  width: 1.8rem;
   text-align: center;
   height: 1.2rem;
   line-height: 1.2rem;
-  border-radius: 35%;
+  border-radius: 0.3rem;
   color: aliceblue;
   font-weight: bold;
+  padding: 0 0.3rem;
 }
 .other-info{
   margin-top: 0.5rem;
@@ -337,11 +328,14 @@
 .right-store div p{
   line-height: 1.25rem;
 }
-.high, .low{
+.high{
   background: red;
   color: #fff
 }
-
+.low{
+  background: green;
+  color: #fff
+}
 .store-bottom{
   margin-top: 0.8rem;
   width: 100%;

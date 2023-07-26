@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <NavBar>
+  <div class="mainBar">
+    <NavBar :mystyle="{background:'rgb(201,22,35)'}">
       <div slot="left-box">
       </div>
 
@@ -46,5 +46,4 @@ import NavBar from "components/common/navbar/nav-bar"
 </script>
 
 <style scoped>
-
 </style>

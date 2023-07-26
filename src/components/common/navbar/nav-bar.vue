@@ -1,6 +1,6 @@
 <template>
   <div class="height">
-    <div class="nav-bar">
+    <div class="nav-bar" :style="mystyle">
       <div class="left-box"><slot name="left-box"></slot></div>
       <div class="center-box"><slot name="center-box"></slot></div>
       <div class="right-box"><slot name="right-box"></slot></div>
@@ -11,6 +11,7 @@
 <script>
   export default {
     name:'NavBar',
+    props:["mystyle"]
   }
 </script>
 
@@ -21,12 +22,12 @@
   .nav-bar {
     display: flex;
     height: 3.0625rem;
-    background: #c82519;
+    /* background: #c82519; */
     width: 100%;
     top: 0;
     left: 0;
     right: 0;
-    color: aliceblue;
+    /* color: aliceblue; */
     position:fixed;
     z-index: 15;
   }

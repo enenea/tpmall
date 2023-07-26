@@ -18,6 +18,7 @@ const routes = [
   {
     path:'',
     redirect:'/home',
+    
   },
   {
     path:'/home',
@@ -38,6 +39,10 @@ const routes = [
   {
     path:'/detail/:id',
     component:Detail,
+    meta:{
+      hideBar : true,
+    },
+    
   },
 ]
 

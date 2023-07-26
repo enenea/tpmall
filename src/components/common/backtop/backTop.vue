@@ -50,7 +50,7 @@
         this.showBackTop = ScrollInfo.scrollTop >= 1100 ? true : false
       },
     },
-    
+
     data() {
       return {
         showBackTop:false

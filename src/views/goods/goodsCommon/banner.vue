@@ -13,11 +13,14 @@
 
         </div>
         <!-- 如果需要分页器 -->
-        <!-- <div class="swiper-pagination"></div> -->
+        <div class="swiper-pagination"></div>
 
         <!-- 如果需要导航按钮 -->
         <!-- <div class="swiper-button-prev"></div>
         <div class="swiper-button-next"></div> -->
+
+        <!-- 如果需要略缩图 -->
+        <div class=".swiper-thumbs"></div>
     </div>
 </template>
 
@@ -35,6 +38,7 @@ export default {
     },
     mounted() {
       setTimeout(()=>{
+        
         this.mySwiper = new Swiper(".swiper-container", {
           autoplay: {
             delay: 2000, // 每次轮播间隔的ms数，默认3000ms
@@ -44,15 +48,17 @@ export default {
           effect:"fade",
           loop:true,
           speed: 500, // 滚动一张或者切换一张图片，需要的时间，单位ms，默认300ms
-          /* pagination: {
+          pagination: {
             el: '.swiper-pagination',
+            type: 'fraction',
+          },
 
-          }, */
           // 如果需要前进后退按钮
           // navigation: {
           //   nextEl: '.swiper-button-next', // 右按钮
           //   prevEl: '.swiper-button-prev', // 左按钮
           // },
+
         })
       }, 500)
     }
@@ -76,6 +82,10 @@ export default {
 }
 .swiper-slide img{
   width: 100%;
+}
+.swiper-pagination {
+  text-align: right;
+  left: -0.5rem;
 }
 
 </style>

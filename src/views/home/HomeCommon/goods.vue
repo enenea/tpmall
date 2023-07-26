@@ -31,7 +31,7 @@
     },
     methods:{
       clickGoods(id){
-        this.$router.push('detail/'+ id)
+        this.$router.push('/detail/'+ id)
       },
       handleScroll() {
         //滚动条在y轴上的滚动距离

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="hideBar">
     <tab-bar>
 
       <tab-bar-item path="/home" >
@@ -36,6 +36,13 @@ import tabBar from "components/common/tabbar/tab-bar"
 
   export default {
     name:'MainTabBar',
+    computed:{
+      // 是否需要导航栏
+      hideBar(){
+        return !this.$route.meta.hideBar
+      },
+    },
+
     components:{
       tabBar,
       tabBarItem
