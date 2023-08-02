@@ -139,9 +139,8 @@
       },
 
       clickStroe(){
-        // console.log("进店");
-        this.$swal('Hello Vue world!!!')
-      },
+        this.$toast("开发中···")
+      }
 
     },
     mounted() {

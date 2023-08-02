@@ -1,16 +1,24 @@
 <template>
-  <div>
+  <div class="profile">
     <MainNavBar :title="title" />
+
+    <ProfileTop></ProfileTop>
+
+    <ProfileBottom></ProfileBottom>
   </div>
 </template>
 
 <script>
 import MainNavBar from "components/content/mainNavBar/MainNavBar"
-  
+import ProfileTop from "./ProfileContent/ProfileTop"
+import ProfileBottom from "./ProfileContent/ProfileBottom"
+
 export default {
   name:'Profile',
   components:{
-    MainNavBar
+    MainNavBar,
+    ProfileTop,
+    ProfileBottom,
   },
   data() {
     return {
@@ -20,5 +28,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .profile{
+    position: fixed;
+    width: 100%;
+  }
 </style>

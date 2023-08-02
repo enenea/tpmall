@@ -10,10 +10,14 @@
     "axios": "^1.4.0",
     "better-scroll": "^2.5.1",
     "core-js": "^3.8.3",
+    "js-cookie": "^2.2.1",
     "swiper": "^5.4.5",
+    "validate.js": "^0.13.1",
+    "vant": "^2.12.54",
     "vue": "^2.6.14",
     "vue-router": "^3.0.2",
-    "vue-sweetalert2": "^5.0.5"
+    "vue-sweetalert2": "^5.0.5",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^5.0.0",

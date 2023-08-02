@@ -46,4 +46,7 @@ import NavBar from "components/common/navbar/nav-bar"
 </script>
 
 <style scoped>
+  .mainBar{
+    color: aliceblue;
+  }
 </style>

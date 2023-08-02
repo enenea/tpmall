@@ -65,7 +65,7 @@
 .wrapper{
 }
 .goods{
-  /* padding-bottom: 2.5rem; */
+  padding-bottom: 2.5rem;
 }
 
 .goods-item{
