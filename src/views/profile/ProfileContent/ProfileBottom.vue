@@ -2,7 +2,7 @@
   <div>
 
     <span class="separate"></span>
-    <ProfileItem :item="item" v-for="item in items"></ProfileItem>
+    <ProfileItem :key="index" :item="item" v-for="(item, index) in items"></ProfileItem>
 
   </div>
 </template>

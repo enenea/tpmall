@@ -28,13 +28,30 @@
         购买
       </div>
 
+
+      <ActionSheet v-model="show" title="选择规格">
+        <skuPicker2></skuPicker2>
+      </ActionSheet>
+
     </div>
   </div>
 </template>
 
 <script>
+  import { ActionSheet } from 'vant';
+  import 'vant/lib/action-sheet/style';
+
+  import skuPicker from "./skuPicker"
+  import skuPicker2 from "./skuPicker2"
+
   export default {
     name:"BottomBar",
+    components:{
+      ActionSheet,
+      skuPicker,
+      skuPicker2,
+
+    },
     methods:{
       customerServiceClick(){
 
@@ -43,19 +60,21 @@
 
       },
       favoriteClick(){
-      
+
       },
       addCart(){
-      
+        this.show = !this.show
       },
       buy(){
-      
+        this.show = !this.show
       },
 
     },
 
     data() {
-      return {}
+      return {
+        show: false,
+      }
     }
   }
 </script>
@@ -103,13 +122,15 @@
   text-align: center;
   height: 3.25rem;
   line-height: 3.25rem;
+  font-weight: bold;
+  color: #fff;
 }
 #cart{
-  background: #ffe32e;
+  background-image: linear-gradient(135deg,#ffba0d,#ffc30d 69%,#ffcf0d);
   width: 60%;
 }
 #buy{
-  background: red;
+  background-image: linear-gradient(135deg,#f2140c,#f2270c 70%,#f24d0c);
   width: 40%;
 }
 #cart span, #buy span{

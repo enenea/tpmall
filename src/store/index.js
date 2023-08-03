@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   token: getToken(),
+  info: {},
 }
 
 const getters = {
@@ -15,6 +16,10 @@ const getters = {
   GET_TOKEN(state){
     return state.token
   },
+  GET_INFO(state){
+    return state.info
+  },
+  
 
 }
 
@@ -24,17 +29,10 @@ const mutations = {
     state.token = token
   },
 
-  SET_ROLES(state, roles){
-    state.roles = roles
+  SET_INFO(state, info){
+    state.info = info
   },
 
-  SET_NAME(state, name){
-    state.name = name
-  },
-
-  SET_AVATAR(state, avatar){
-    state.avatar = avatar
-  },
 
 }
 
@@ -101,16 +99,7 @@ const actions = {
           reject('Verification failed, please Login again.')
         }
 
-        const { roles, name, avatar } = data
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          // reject('getInfo: roles must be a non-null array!')
-        }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
+        commit('SET_INFO', data)
         resolve(data)
       }).catch(error => {
         reject(error)

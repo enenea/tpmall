@@ -4,7 +4,11 @@
 
       <GoodsNavBar></GoodsNavBar>
 
-      <Banner :banner="goodsInfo.goods_banner" ></Banner>
+      <BannerVant
+      v-if="goodsInfo.goods_banner"
+      :banner="goodsInfo.goods_banner"
+      :totalBanner="goodsInfo.goods_banner.length"
+      />
 
       <Infomation ref="infomation" :goods="goodsInfo"></Infomation>
 
@@ -22,7 +26,7 @@
 
 <script>
   import GoodsNavBar from "./goodsCommon/goodsNavBar"
-  import Banner from "./goodsCommon/banner"
+  import BannerVant from "./goodsCommon/banner-vant"
   import Infomation from "./goodsCommon/info"
   import Comment from "./goodsCommon/comment"
   import {getGoodsDetail} from "network/Goods"
@@ -35,7 +39,7 @@
     name:"Detail",
     components:{
       GoodsNavBar,
-      Banner,
+      BannerVant,
       Infomation,
       Comment,
       Goods,
@@ -44,7 +48,7 @@
     },
     methods:{
       handleLoadData(id){
-        
+
         // 加载更多
         // this.getGoods(id, true)
 

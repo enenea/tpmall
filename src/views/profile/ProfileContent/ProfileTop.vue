@@ -4,17 +4,17 @@
       <div class="info-top">
 
         <div class="avatar">
-          <img v-if="info.avatar" :src="info.avatar" alt="">
+          <img v-if="GET_INFO.avatar" :src="GET_INFO.avatar" alt="">
           <img v-else src="~assets/img/profile/user.png" alt="">
         </div>
 
         <div class="info-top-center">
 
-          <div v-if="info.phone">
-            <div class="center-info-top">{{info.nickname}}</div>
+          <div v-if="GET_INFO.phone">
+            <div class="center-info-top">{{GET_INFO.nickname}}</div>
             <div class="center-info-buttom">
               <img src="~assets/img/profile/mobile.png" alt="">
-              <span>{{info.phone}}</span>
+              <span>{{GET_INFO.phone}}</span>
             </div>
           </div>
           <div v-else>
@@ -28,7 +28,7 @@
         </div>
 
 
-        <div @click="jump" class="right" v-if="!info.phone">
+        <div @click="jump" class="right" v-if="!GET_INFO.phone">
           <img src="~assets/img/profile/right.png" alt="">
         </div>
 
@@ -37,27 +37,43 @@
       <div class="info-button">
 
         <div>
-          <span>
-            <i>{{info.credit.toFixed(2)}}</i>元
+          <span v-if="GET_INFO.credit">
+            <i >{{(GET_INFO.credit).toFixed(2)}}</i>元
           </span>
+
+          <span v-else>
+            <i >0.00</i>元
+          </span>
+
+
           <span>
             我的余额
           </span>
         </div>
 
         <div>
-          <span>
-            <i>{{info.coupon}}</i>个
+          <span v-if="GET_INFO">
+            <i>{{GET_INFO.coupon}}</i>个
           </span>
+
+          <span v-else>
+            <i>0</i>个
+          </span>
+
           <span>
             我的优惠
           </span>
         </div>
 
         <div>
-          <span>
-            <i>{{info.credit_score.toFixed(2)}}</i>分
+          <span v-if="GET_INFO.credit_score">
+            <i>{{GET_INFO.credit_score.toFixed(2)}}</i>分
           </span>
+
+          <span v-else>
+            <i>0.00</i>分
+          </span>
+
           <span>
             我的积分
           </span>
@@ -65,18 +81,19 @@
 
       </div>
 
-
-
     </div>
 
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex"
+import { mapActions, mapGetters } from "vuex"
 export default {
   name:'ProfileTop',
   components:{
+  },
+  computed:{
+    ...mapGetters(["GET_INFO"]),
   },
   methods:{
     ...mapActions(["getInfo"]),
@@ -88,9 +105,8 @@ export default {
 
   },
   created() {
+
     this.getInfo().then( res => {
-      console.log(res);
-      this.info = res
 
     }).catch( err => {
       // this.$toast(err);
@@ -115,39 +131,31 @@ export default {
 
 <style scoped>
 .info-panel{
-  /* position: fixed; */
   width: 100%;
 }
 .info-top {
   background:rgb(201, 22, 35);
-  position: relative;
-  width: 100%;
   display: flex;
   padding: 1.5rem 0;
+  align-items: center;
 }
+
 img{
   width: 2.5rem;
 }
 
-
-.info-top>div{
-  display: inline-block;
-}
-
 .avatar{
-  width: 20%;
-  position: relative;
+  margin: 0 0.5rem;
 }
 
 .info-top-center{
-  width: 33%;
+  flex: 1;
 }
 .right{
   width: 50%;
 }
 
 .avatar img{
-  position: inherit;
   width: 4rem;
   top: -0.4375rem;
   left: 0.4375rem;
@@ -160,7 +168,7 @@ img{
   font-size: 1.4rem;
 }
 .center-info-buttom{
-  position: relative;
+  display: flex;
 }
 .center-info-buttom img{
   position: inherit;
